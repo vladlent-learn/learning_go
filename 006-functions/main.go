@@ -12,6 +12,10 @@ type secretAgent struct {
 	ltk bool
 }
 
+type human interface {
+	speak()
+}
+
 func main() {
 	defer foo()
 
@@ -19,17 +23,16 @@ func main() {
 	sa2 := createAgent("Miss", "Moneypenny", true)
 
 	sa1.speak()
-	sa2.speak()
 
-	bar()
+	bar(sa2)
 }
 
 func foo() {
 	fmt.Println("foo")
 }
 
-func bar() {
-	fmt.Println("bar")
+func bar(h human) {
+	h.speak()
 }
 
 func createAgent(first string, last string, ltk bool) secretAgent {
